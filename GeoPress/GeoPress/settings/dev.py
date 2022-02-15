@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -127,7 +127,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # 类似于访问静态文件的令牌，对 url 路径进行控制
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"), # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
+    os.path.join(BASE_DIR, "assets"), # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "collect_static") # 线上执行 python manage.py collectstatic 时所集中存放所有静态文件的目录
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

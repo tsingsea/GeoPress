@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent # 因为settings目录的存在，故加几个.parent层级目录上升几级
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'auth2.apps.Auth2Config',
 ]
 
 MIDDLEWARE = [
@@ -55,12 +56,13 @@ ROOT_URLCONF = 'GeoPress.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media', # 在使用MEDIA_URL之前我们需要新增一条中间件，在settings.py文件的TEMPLATES参数中加入中间件
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -131,13 +133,21 @@ USE_TZ = True
 STATIC_URL = '/static/' # 类似于访问静态文件的令牌，对 url 路径进行控制
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"), # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
-    os.path.join(BASE_DIR, "assets"), # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
+    # BASE_DIR / 'static', # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
+    BASE_DIR / 'assets', # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "collect_static") # 线上执行 python manage.py collectstatic 时所集中存放所有静态文件的目录
+STATIC_ROOT = BASE_DIR / 'collect_static' # 线上执行 python manage.py collectstatic 时所集中存放所有静态文件的目录
+
+# https://docs.djangoproject.com/zh-hans/3.2/ref/settings/#std:setting-MEDIA_ROOT
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR / 'upload'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-user-model
+AUTH_USER_MODEL = 'auth2.User'

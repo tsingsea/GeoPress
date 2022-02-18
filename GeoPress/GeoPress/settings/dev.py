@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework.apps.RestFrameworkConfig', # 用于将Django全栈框架的视图层转换成基于Restful的接口, 适配前后端分离架构
     'blog.apps.BlogConfig',
     'auth2.apps.Auth2Config',
 ]
+
+# https://www.django-rest-framework.org/tutorial/quickstart/#pagination
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,9 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans' # en-us zh-hans
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai' # UTC
 
 USE_I18N = True
 

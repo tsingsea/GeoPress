@@ -62,7 +62,7 @@ class Comment(models.Model):
     comment_mod_date = models.DateTimeField(default=now, verbose_name='评论修改时间')
     comments = models.CharField(max_length=255, verbose_name='评论内容')
     # 父级评论：对文章的评论；子级评论：对评论的评论
-    parent_comment = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True)
+    parent_comment = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True, verbose_name='上级评论')
 
     class Meta:
         verbose_name = '评论'

@@ -7,3 +7,6 @@ def home(request):
     #     # 'https://www.tsingsea.com'
     # )
     return render(request, 'GeoPress/home.html')
+
+def login(request):
+    return render(request, 'GeoPress/login.html')

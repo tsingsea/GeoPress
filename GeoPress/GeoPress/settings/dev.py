@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework.apps.RestFrameworkConfig', # 用于将Django全栈框架的视图层转换成基于Restful的接口, 适配前后端分离架构
     'blog.apps.BlogConfig',
     'auth2.apps.Auth2Config',
+    'oauth.apps.OauthConfig',
 ]
 
 # https://www.django-rest-framework.org/tutorial/quickstart/#pagination
@@ -83,22 +84,22 @@ WSGI_APPLICATION = 'GeoPress.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rjxuf15q',
-        'USER': 'rJXUf15Q',
-        'PASSWORD': 'u9rGgQbZxJfq0x',
-        'HOST': '47.99.55.57',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'rjxuf15q',
+#         'USER': 'rJXUf15Q',
+#         'PASSWORD': 'u9rGgQbZxJfq0x',
+#         'HOST': '47.99.55.57',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation

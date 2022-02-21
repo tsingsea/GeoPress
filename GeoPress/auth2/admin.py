@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import User
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id', 'email', 'username', 'phone']
+    list_display = ['id', 'email', 'username', 'phone', 'date_joined', 'last_login', 'is_active']
     list_display_links = list_display
 
 admin.site.register(User, UserAdmin)

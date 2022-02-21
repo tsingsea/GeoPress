@@ -6,11 +6,31 @@ from auth2.models import User
 from django.utils.timezone import now
 
 class Article(models.Model):
+    ARTICLE_STATUS = (
+        ('d','草稿'),
+        ('p','发表'),
+    )
+    COMMENT_STATUS = (
+        ('o', '打开'),
+        ('c', '关闭'),
+    )
     post_author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
     post_pub_date = models.DateTimeField(auto_now_add=now, verbose_name='发布时间') # 文章发布时间
     post_mod_date = models.DateTimeField(default=now, verbose_name='修改时间') # 文章修改时间
     post_title = models.CharField(max_length=100, verbose_name='标题') # 文章标题 # CharField必须要指定max_length参数, 不指定会直接报错
     post_body = models.TextField(verbose_name='博文') # 文章正文
+    status = models.CharField(
+        max_length=1,
+        choices=ARTICLE_STATUS,
+        default='p',
+        verbose_name='文章状态'
+    )
+    post_comment = models.CharField(
+        max_length=1,
+        choices=COMMENT_STATUS,
+        default='o',
+        verbose_name='评论状态'
+    )
     category = models.ForeignKey(to='Category', on_delete=models.CASCADE, blank=True, null=True, verbose_name='分类') # 默认就与分类表的主键字段做外键关联
     tag = models.ManyToManyField(to='Tag', blank=True, verbose_name='标签') # 文章可以没有标签，因此为标签tag指定了blank=True
 
@@ -70,3 +90,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comments
+
+class Links(models.Model):
+    link_author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='友链作者')
+    link_url = models.CharField(max_length=255, verbose_name='链接地址')
+    link_des = models.CharField(max_length=255, verbose_name='站点描述')
+
+    class Meta:
+        verbose_name = '友链'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.link_url

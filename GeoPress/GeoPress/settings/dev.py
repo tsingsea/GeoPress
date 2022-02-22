@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework.apps.RestFrameworkConfig', # 用于将Django全栈框架的视图层转换成基于Restful的接口, 适配前后端分离架构
     'blog.apps.BlogConfig',
     'auth2.apps.Auth2Config',
-    'oauth.apps.OauthConfig',
 ]
 
 # https://www.django-rest-framework.org/tutorial/quickstart/#pagination

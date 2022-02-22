@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.contenttypes', # 是 auth 模块的用户权限处理部分依赖的应用
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',

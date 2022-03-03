@@ -9,7 +9,7 @@ router.register(r'groups', views.GroupViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
-app_name = 'auth2' # 解决<form class="form" action="{% url 'auth2:register' %}" method="post">报错
+app_name = 'auth2'#app_name#解决<form class="form" action="{% url 'auth2:register' %}" method="post">报错
 urlpatterns = [
     path('', include(router.urls)),
     path('register/', views.register, name='register'),

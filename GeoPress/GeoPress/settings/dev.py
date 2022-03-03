@@ -140,11 +140,11 @@ USE_TZ = True
 STATIC_URL = '/static/' # 类似于访问静态文件的令牌，对 url 路径进行控制
 
 STATICFILES_DIRS = [
-    # BASE_DIR / 'static', # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
-    BASE_DIR / 'assets', # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
+    BASE_DIR / 'static', # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
+    # BASE_DIR / 'assets', # 与文件夹的 " " 对应可任意修改，第二个参数就是项目中你存放静态文件的文件夹名称
 ]
 
-STATIC_ROOT = BASE_DIR / 'collect_static' # 线上执行 python manage.py collectstatic 时所集中存放所有静态文件的目录
+STATIC_ROOT = BASE_DIR / 'collect_static' # 线上执行 python manage.py collectstatic 时，静态文件归集的文件夹，项目中的所有静态文件及admin静态文件都将被复制到STATIC_ROOT所指定的路径
 
 # https://docs.djangoproject.com/zh-hans/3.2/ref/settings/#std:setting-MEDIA_ROOT
 MEDIA_URL = '/media/'
